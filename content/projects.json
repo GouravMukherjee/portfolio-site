@@ -1,0 +1,60 @@
+[
+  {
+    "id": "1",
+    "slug": "ai-powered-chatbot",
+    "title": "AI-Powered Customer Service Chatbot",
+    "description": "Built an intelligent chatbot using GPT-4 and fine-tuned models for automated customer support",
+    "longDescription": "Developed a sophisticated AI chatbot system that handles 10,000+ customer queries daily with 95% accuracy. Implemented natural language understanding, context management, and seamless handoff to human agents when needed.",
+    "image": "/images/projects/chatbot.jpg",
+    "tags": ["AI", "NLP", "Python", "FastAPI", "React"],
+    "technologies": ["GPT-4", "LangChain", "Redis", "PostgreSQL", "Docker"],
+    "category": "AI/ML",
+    "demoUrl": "https://demo.example.com",
+    "githubUrl": "https://github.com/example/chatbot",
+    "featured": true,
+    "role": "Lead Developer",
+    "highlights": [
+      "Reduced response time by 80%",
+      "Achieved 95% customer satisfaction",
+      "Handles 10K+ queries daily"
+    ]
+  },
+  {
+    "id": "2",
+    "slug": "real-time-analytics-dashboard",
+    "title": "Real-Time Analytics Dashboard",
+    "description": "Scalable real-time data visualization platform processing millions of events per day",
+    "longDescription": "Created a high-performance analytics dashboard that processes and visualizes streaming data in real-time. Built with modern tech stack ensuring low latency and high availability.",
+    "image": "/images/projects/dashboard.jpg",
+    "tags": ["Next.js", "TypeScript", "WebSocket", "D3.js"],
+    "technologies": ["Next.js", "Vercel", "Apache Kafka", "TimescaleDB"],
+    "category": "Web Development",
+    "demoUrl": "https://dashboard.example.com",
+    "githubUrl": "https://github.com/example/dashboard",
+    "featured": true,
+    "role": "Full Stack Developer",
+    "highlights": [
+      "Processes 5M+ events daily",
+      "Sub-second latency",
+      "99.99% uptime"
+    ]
+  },
+  {
+    "id": "3",
+    "slug": "computer-vision-quality-control",
+    "title": "Computer Vision Quality Control System",
+    "description": "Automated quality inspection system using deep learning for manufacturing",
+    "longDescription": "Developed an end-to-end computer vision solution for automated quality control in manufacturing. The system detects defects with 98% accuracy, reducing manual inspection time by 90%.",
+    "image": "/images/projects/vision.jpg",
+    "tags": ["Computer Vision", "PyTorch", "YOLO", "Edge Computing"],
+    "technologies": ["PyTorch", "OpenCV", "NVIDIA Triton", "Kubernetes"],
+    "category": "AI/ML",
+    "featured": true,
+    "role": "ML Engineer",
+    "highlights": [
+      "98% defect detection accuracy",
+      "90% reduction in inspection time",
+      "Real-time processing at 60 FPS"
+    ]
+  }
+]

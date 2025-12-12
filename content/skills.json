@@ -1,0 +1,118 @@
+[
+  {
+    "category": "AI/ML",
+    "skills": [
+      {
+        "name": "PyTorch",
+        "level": 95,
+        "skillLevel": "expert",
+        "yearsOfExperience": 5
+      },
+      {
+        "name": "TensorFlow",
+        "level": 90,
+        "skillLevel": "expert",
+        "yearsOfExperience": 4
+      },
+      {
+        "name": "Scikit-Learn",
+        "level": 95,
+        "skillLevel": "expert",
+        "yearsOfExperience": 6
+      },
+      {
+        "name": "LangChain",
+        "level": 85,
+        "skillLevel": "advanced",
+        "yearsOfExperience": 2
+      }
+    ]
+  },
+  {
+    "category": "Frontend",
+    "skills": [
+      {
+        "name": "React",
+        "level": 95,
+        "skillLevel": "expert",
+        "yearsOfExperience": 6
+      },
+      {
+        "name": "Next.js",
+        "level": 90,
+        "skillLevel": "expert",
+        "yearsOfExperience": 4
+      },
+      {
+        "name": "TypeScript",
+        "level": 95,
+        "skillLevel": "expert",
+        "yearsOfExperience": 5
+      },
+      {
+        "name": "Tailwind CSS",
+        "level": 90,
+        "skillLevel": "expert",
+        "yearsOfExperience": 3
+      }
+    ]
+  },
+  {
+    "category": "Backend",
+    "skills": [
+      {
+        "name": "Node.js",
+        "level": 90,
+        "skillLevel": "expert",
+        "yearsOfExperience": 6
+      },
+      {
+        "name": "Python",
+        "level": 95,
+        "skillLevel": "expert",
+        "yearsOfExperience": 8
+      },
+      {
+        "name": "FastAPI",
+        "level": 90,
+        "skillLevel": "expert",
+        "yearsOfExperience": 3
+      },
+      {
+        "name": "PostgreSQL",
+        "level": 85,
+        "skillLevel": "advanced",
+        "yearsOfExperience": 5
+      }
+    ]
+  },
+  {
+    "category": "DevOps",
+    "skills": [
+      {
+        "name": "Docker",
+        "level": 90,
+        "skillLevel": "expert",
+        "yearsOfExperience": 5
+      },
+      {
+        "name": "Kubernetes",
+        "level": 80,
+        "skillLevel": "advanced",
+        "yearsOfExperience": 3
+      },
+      {
+        "name": "AWS",
+        "level": 85,
+        "skillLevel": "advanced",
+        "yearsOfExperience": 5
+      },
+      {
+        "name": "CI/CD",
+        "level": 85,
+        "skillLevel": "advanced",
+        "yearsOfExperience": 4
+      }
+    ]
+  }
+]

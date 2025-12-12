@@ -1,0 +1,38 @@
+[
+  {
+    "id": "freelance-dev",
+    "company": "Freelance",
+    "position": "Web Developer",
+    "duration": "Jan 2025 - Present",
+    "startDate": "2025-01",
+    "current": true,
+    "location": "Remote",
+    "locationType": "remote",
+    "accomplishments": [
+      "Built 5+ websites for local businesses and clients",
+      "Specialized in modern web technologies (Next.js, React, Tailwind)",
+      "Delivered projects on time with 100% client satisfaction",
+      "Implemented responsive designs and SEO optimization"
+    ],
+    "stack": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Vercel"],
+    "technologies": ["Figma", "Git", "Vercel", "Supabase"]
+  },
+  {
+    "id": "coding-tutor",
+    "company": "Self-Employed",
+    "position": "Programming Tutor",
+    "duration": "Jun 2024 - Present",
+    "startDate": "2024-06",
+    "current": true,
+    "location": "San José, CA",
+    "locationType": "hybrid",
+    "accomplishments": [
+      "Tutored 15+ students in Python, JavaScript, and computer science fundamentals",
+      "Helped students improve grades by average of 20%",
+      "Created custom learning materials and coding exercises",
+      "Specialized in making programming concepts accessible to beginners"
+    ],
+    "stack": ["Python", "JavaScript", "Java", "Git"],
+    "technologies": ["VS Code", "Jupyter", "GitHub"]
+  }
+]
