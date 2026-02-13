@@ -10,7 +10,6 @@ import {
   isIPad,
   getOrientation,
   onOrientationChange,
-  isLandscape,
   getSafeAreaInsets,
   hasNotch,
   getViewportSize,
@@ -134,6 +133,7 @@ export const useScrollLock = (enabled: boolean = false) => {
         }
       };
     }
+    return undefined;
   }, [enabled]);
 };
 

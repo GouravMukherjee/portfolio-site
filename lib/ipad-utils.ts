@@ -74,7 +74,7 @@ export const getSafeAreaInsets = (): {
 
   const getInset = (name: string): number => {
     const value = styles.getPropertyValue(`--safe-area-inset-${name}`).trim();
-    return value ? parseInt(value) : 0;
+    return value ? parseInt(value, 10) : 0;
   };
 
   return {
@@ -161,6 +161,7 @@ export const requestIPadFullscreen = async (element: HTMLElement): Promise<void>
   try {
     await element.requestFullscreen();
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.warn('Fullscreen request failed:', error);
   }
 };
