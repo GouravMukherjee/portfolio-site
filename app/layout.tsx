@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Fira_Code, Inter } from 'next/font/google';
 import '../styles/globals.css';
 import { Navigation } from '@/components/common/Navigation';
@@ -15,10 +15,20 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const fira = Fira_Code({ subsets: ['latin'], variable: '--font-fira' });
 
 export const metadata: Metadata = genMeta({
-  title: 'Gourav Mukherjee | Student Developer & AI Enthusiast',
+  title: 'Gourav Mukherjee Portfolio',
   description:
-    'First-year CS & Linguistics student at SJSU. Learning to build intelligent systems with NLP and multi-agent AI. Building Orion - an offline AI assistant for edge devices.',
+    'CS & Linguistics student at SJSU building intelligent systems with NLP and multi-agent AI.',
 });
+
+// iPad and mobile viewport optimization
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: 'cover',
+  colorScheme: 'dark',
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const personSchema = generatePersonSchema({

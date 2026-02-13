@@ -1,164 +1,163 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-
-interface Star {
-  id: number;
-  x: number;
-  y: number;
-  size: number;
-  color: string;
-  opacity: number;
-  twinkleDelay: number;
-  twinkleDuration: number;
-  layer: number; // For parallax depth (1 = far, 2 = mid, 3 = near)
-  floatAnimation: number; // Which float animation to use (1-5)
-  floatDuration: number; // Duration of float animation
-  floatDelay: number; // Delay before float animation starts
-}
+import { useEffect, useRef } from 'react';
 
 export default function Starfield() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [stars, setStars] = useState<Star[]>([]);
-  const [scrollY, setScrollY] = useState(0);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  // Generate stars on mount
   useEffect(() => {
-    const generateStars = (): Star[] => {
-      const starCount = 300; // 250-350 range
-      const newStars: Star[] = [];
+    const canvas = canvasRef.current;
+    // eslint-disable-next-line consistent-return
+    if (!canvas) return;
 
-      // Star color palettes with exact colors from reference
-      const colorPalettes = {
-        white: ['#e8e8e8', '#f0f0f0', '#ffffff'], // 50% of stars
-        lavenderBlue: ['#9898ff', '#a0a0ff', '#a8a8ff'], // 30% of stars
-        purplePink: ['#c080ff', '#d090ff', '#c088ff'], // 20% of stars
-      };
+    const ctx = canvas.getContext('2d');
+    // eslint-disable-next-line consistent-return
+    if (!ctx) return;
 
-      for (let i = 0; i < starCount; i += 1) {
-        // Determine star color based on distribution
-        let color: string;
-        const colorRoll = Math.random();
-        if (colorRoll < 0.5) {
-          // 50% white
-          color = colorPalettes.white[Math.floor(Math.random() * colorPalettes.white.length)];
-        } else if (colorRoll < 0.8) {
-          // 30% lavender-blue
-          color = colorPalettes.lavenderBlue[Math.floor(Math.random() * colorPalettes.lavenderBlue.length)];
-        } else {
-          // 20% purple-pink
-          color = colorPalettes.purplePink[Math.floor(Math.random() * colorPalettes.purplePink.length)];
-        }
+    // Set canvas size
+    const setCanvasSize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    setCanvasSize();
+    window.addEventListener('resize', setCanvasSize);
 
-        // Star size distribution - mostly small
-        let size: number;
-        const sizeRoll = Math.random();
-        if (sizeRoll < 0.7) {
-          size = 1; // 70% are tiny
-        } else if (sizeRoll < 0.9) {
-          size = 2; // 20% are small
-        } else if (sizeRoll < 0.97) {
-          size = 3; // 7% are medium
-        } else {
-          size = 4; // 3% are slightly larger
-        }
+    // Star configuration
+    interface Star {
+      x: number;
+      y: number;
+      radius: number;
+      color: string;
+      opacity: number;
+      twinkleSpeed: number;
+      twinklePhase: number;
+    }
 
-        // Opacity distribution
-        const opacityRoll = Math.random();
-        let opacity: number;
-        if (opacityRoll < 0.4) {
-          opacity = 0.2; // 40% dim
-        } else if (opacityRoll < 0.7) {
-          opacity = 0.4; // 30% medium
-        } else {
-          opacity = 0.6; // 30% bright
-        }
+    const stars: Star[] = [];
+    const starCount = 500;
 
-        // Parallax layer (for depth effect)
-        const layerRoll = Math.random();
-        let layer = 1; // Default: far (slowest)
-        if (layerRoll >= 0.4 && layerRoll < 0.8) {
-          layer = 2; // 40% mid
-        } else if (layerRoll >= 0.8) {
-          layer = 3; // 20% near (fastest)
-        }
+    // Color palettes
+    const colors = [
+      '#ffffff', '#f0f0f0', '#e8e8e8', // White (60%)
+      '#a0a0ff', '#9898ff', '#a8a8ff', // Lavender (25%)
+      '#c080ff', '#d090ff', '#c088ff', // Purple-pink (15%)
+    ];
 
-        newStars.push({
-          id: i,
-          x: Math.random() * 100, // Percentage
-          y: Math.random() * 100, // Percentage
-          size,
-          color,
-          opacity,
-          twinkleDelay: Math.random() * 4, // 0-4 seconds stagger
-          twinkleDuration: 3 + Math.random() * 2, // 3-5 seconds
-          layer,
-          floatAnimation: Math.floor(Math.random() * 5) + 1, // Random float animation 1-5
-          floatDuration: 15 + Math.random() * 10, // 15-25 seconds for smooth floating
-          floatDelay: Math.random() * 5, // 0-5 seconds delay
-        });
+    // Create stars
+    for (let i = 0; i < starCount; i += 1) {
+      const colorIndex = Math.random();
+      let color: string;
+      if (colorIndex < 0.6) {
+        color = colors[Math.floor(Math.random() * 3)];
+      } else if (colorIndex < 0.85) {
+        color = colors[3 + Math.floor(Math.random() * 3)];
+      } else {
+        color = colors[6 + Math.floor(Math.random() * 3)];
       }
 
-      return newStars;
+      const sizeRoll = Math.random();
+      let radius: number;
+      if (sizeRoll < 0.7) {
+        radius = 0.5;
+      } else if (sizeRoll < 0.9) {
+        radius = 1;
+      } else if (sizeRoll < 0.97) {
+        radius = 1.5;
+      } else {
+        radius = 2;
+      }
+
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius,
+        color,
+        opacity: 0.3 + Math.random() * 0.6,
+        twinkleSpeed: 0.001 + Math.random() * 0.003,
+        twinklePhase: Math.random() * Math.PI * 2,
+      });
+    }
+
+    // Animation loop
+    let animationFrameId: number;
+    let lastTime = Date.now();
+
+    const animate = () => {
+      const currentTime = Date.now();
+      const deltaTime = currentTime - lastTime;
+      lastTime = currentTime;
+
+      // Clear canvas
+      ctx.fillStyle = '#0a0a0a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw and update stars
+      stars.forEach((star) => {
+        // Update twinkle phase
+        const updatedTwinklePhase = star.twinklePhase + star.twinkleSpeed * deltaTime;
+        // eslint-disable-next-line no-param-reassign
+        star.twinklePhase = updatedTwinklePhase;
+
+        // Calculate twinkle opacity
+        const twinkleOpacity = star.opacity * (0.5 + 0.5 * Math.sin(updatedTwinklePhase));
+
+        // Draw star with glow
+        ctx.save();
+        ctx.globalAlpha = twinkleOpacity * 0.4;
+        
+        // Glow halo
+        const glowGradient = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, star.radius * 4);
+        glowGradient.addColorStop(0, star.color);
+        glowGradient.addColorStop(0.5, `${star.color}80`);
+        glowGradient.addColorStop(1, `${star.color}00`);
+        ctx.fillStyle = glowGradient;
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius * 4, 0, Math.PI * 2);
+        ctx.fill();
+        
+        ctx.globalAlpha = twinkleOpacity;
+        ctx.fillStyle = star.color;
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      });
+
+      animationFrameId = requestAnimationFrame(animate);
     };
 
-    setStars(generateStars());
-  }, []);
+    // Start animation
+    animate();
 
-  // Handle scroll for parallax effect
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
+    // Cleanup
+    // eslint-disable-next-line consistent-return
+    return () => {
+      window.removeEventListener('resize', setCanvasSize);
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
     };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <>
-      {/* Starfield Container */}
-      <div
-        ref={containerRef}
-        className="fixed inset-0 overflow-hidden pointer-events-none"
+      {/* Canvas Starfield */}
+      <canvas
+        ref={canvasRef}
+        className="fixed inset-0 pointer-events-none"
         style={{
           zIndex: -1,
           backgroundColor: '#0a0a0a',
         }}
         aria-hidden="true"
-      >
-        {/* Stars */}
-        {stars.map((star) => {
-          // Calculate parallax offset based on layer
-          const parallaxSpeed = star.layer === 1 ? 0.2 : star.layer === 2 ? 0.4 : 0.6;
-          const yOffset = scrollY * parallaxSpeed;
-
-          return (
-            <div
-              key={star.id}
-              className="absolute rounded-full"
-              style={{
-                left: `${star.x}%`,
-                top: `calc(${star.y}% + ${yOffset}px)`,
-                width: `${star.size}px`,
-                height: `${star.size}px`,
-                backgroundColor: star.color,
-                opacity: star.opacity,
-                boxShadow: `0 0 ${star.size}px ${star.color}`,
-                filter: 'blur(0.5px)',
-                animation: `twinkle ${star.twinkleDuration}s ease-in-out infinite ${star.twinkleDelay}s, float-${star.floatAnimation} ${star.floatDuration}s ease-in-out infinite ${star.floatDelay}s`,
-              }}
-            />
-          );
-        })}
-      </div>
+      />
 
       {/* Vignette Overlay */}
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
           zIndex: -1,
-          background: 'radial-gradient(circle at center, transparent 0%, transparent 40%, rgba(0, 0, 0, 0.4) 70%, rgba(0, 0, 0, 0.6) 100%)',
+          background: 'radial-gradient(ellipse at center, transparent 0%, transparent 50%, rgba(0, 0, 0, 0.4) 80%, rgba(0, 0, 0, 0.8) 100%)',
         }}
         aria-hidden="true"
       />

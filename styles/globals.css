@@ -173,12 +173,12 @@
 
   /* Primary button with gradient background */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-accent px-8 py-3 min-h-[44px] text-base font-semibold text-text-primary shadow-md transition-all duration-200 ease-out hover:opacity-90 hover:scale-[1.02] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-lavender;
+    @apply inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-lg bg-gradient-accent px-6 sm:px-8 py-3 min-h-[44px] text-base font-semibold text-text-primary shadow-md transition-all duration-200 ease-out hover:opacity-90 hover:scale-[1.02] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-lavender;
   }
 
   /* Secondary button with transparent background and border */
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-transparent border border-accent-primary/40 px-8 py-3 min-h-[44px] text-base font-semibold text-text-secondary transition-all duration-200 ease-out hover:border-accent-primary hover:text-text-primary focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-lavender;
+    @apply inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-lg bg-transparent border border-accent-primary/40 px-6 sm:px-8 py-3 min-h-[44px] text-base font-semibold text-text-secondary transition-all duration-200 ease-out hover:border-accent-primary hover:text-text-primary focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-lavender;
   }
 
   /* Card component with consistent styling */

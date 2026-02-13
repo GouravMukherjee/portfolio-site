@@ -44,8 +44,8 @@ export function ExperienceCard({
         
         {!!accomplishments.length && (
           <ul className="mt-4 space-y-2 text-sm text-text-secondary">
-            {accomplishments.map((accomplishment, i) => (
-              <li key={i} className="flex items-start gap-2">
+            {accomplishments.map((accomplishment) => (
+              <li key={`${company}-${position}-${accomplishment}`} className="flex items-start gap-2">
                 <span className="text-accent-lavender mt-1 flex-shrink-0">•</span>
                 <span className="flex-1">{accomplishment}</span>
               </li>

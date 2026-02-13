@@ -20,7 +20,7 @@ export function ContactSection({ email = 'gouravmukherjee058@gmail.com' }: Conta
       </div>
       
       {/* Contact Icons - icon + label (no usernames) */}
-      <div className="flex items-start justify-center gap-8">
+      <div className="flex flex-wrap items-start justify-center gap-5 sm:gap-8">
         {/* Email */}
         <div className="group flex flex-col items-center">
           <a

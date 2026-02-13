@@ -160,7 +160,7 @@ export function AboutSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.9 }}
-              className="flex flex-wrap gap-4 pt-2"
+              className="flex w-full flex-col gap-3 pt-2 sm:w-auto sm:flex-row sm:flex-wrap sm:gap-4"
             >
               <a
                 href="mailto:gourav.mukherjee@sjsu.edu"

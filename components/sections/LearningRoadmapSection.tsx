@@ -116,6 +116,14 @@ const statusIcons = {
   )
 };
 
+const sectionProgressWidths: Record<string, string> = {
+  "Currently Learning": "75%",
+  "Next Semester": "40%",
+  "Long-term Vision": "15%"
+};
+
+const timelineDotColors = ['bg-blue-500', 'bg-purple-500', 'bg-cyan-500'] as const;
+
 function RoadmapCard({ 
   section, 
   items, 
@@ -155,7 +163,7 @@ function RoadmapCard({
       <div className="mb-6 h-1.5 w-full rounded-full bg-slate-800">
         <motion.div
           initial={{ width: 0 }}
-          whileInView={{ width: section.title === "Currently Learning" ? "75%" : section.title === "Next Semester" ? "40%" : "15%" }}
+          whileInView={{ width: sectionProgressWidths[section.title] ?? "15%" }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.3 + index * 0.2, ease: "easeOut" }}
           className={`h-full rounded-full bg-gradient-to-r ${section.gradient}`}
@@ -251,9 +259,7 @@ export function LearningRoadmapSection() {
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.3 + i * 0.2 }}
-                className={`h-3 w-3 rounded-full ${
-                  i === 0 ? 'bg-blue-500' : i === 1 ? 'bg-purple-500' : 'bg-cyan-500'
-                }`}
+                className={`h-3 w-3 rounded-full ${timelineDotColors[i]}`}
               />
               {i < 2 && (
                 <motion.div

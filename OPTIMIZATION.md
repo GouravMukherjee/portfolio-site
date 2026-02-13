@@ -63,6 +63,207 @@ export { reportWebVitals };
 
 ---
 
+## iPad Optimization
+
+### Viewport Configuration
+Ensures proper rendering on iPad devices with notches and various screen sizes.
+
+**In `app/layout.tsx` head:**
+```html
+<meta 
+  name="viewport" 
+  content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover"
+/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+```
+
+### Touch-Friendly UI
+- **Minimum Tap Target:** 44×44px (Apple HIG standard)
+- **Recommended:** 48×50px for better usability
+- **Padded Buttons:** 12px padding minimum
+
+**Implementation in components:**
+```tsx
+// Button component example
+<button className="px-4 py-3 min-h-[44px] min-w-[44px] rounded-lg">
+  Touch Target
+</button>
+
+// Link components
+<a className="py-2 px-3 min-h-[44px] inline-flex items-center">
+  Touchable Link
+</a>
+```
+
+### Responsive Breakpoints for iPad
+
+**Tailwind Configuration overrides in `tailwind.config.ts`:**
+```typescript
+screens: {
+  'sm': '640px',    // Mobile
+  'md': '768px',    // iPad Mini/iPad (9.7")
+  'lg': '1024px',   // iPad Pro (10.5" - 11")
+  'xl': '1280px',   // iPad Pro (12.9")
+  'tablet': { 'raw': '(min-width: 768px) and (max-width: 1024px)' },
+  'landscape': { 'raw': '(max-height: 500px)' },
+}
+```
+
+**Usage in components:**
+```tsx
+// Responsive grid layout
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  {items.map(item => <Card key={item.id} {...item} />)}
+</div>
+
+// iPad-specific layout
+<div className="hidden tablet:flex flex-row gap-6">
+  {/* iPad layout */}
+</div>
+```
+
+### Orientation Handling
+
+**CSS for landscape prevention (if needed):**
+```css
+/* Prevent landscape viewing on small tablets */
+@media (max-height: 500px) {
+  .hero { min-height: auto; }
+  .section { padding: 2rem 1rem; }
+}
+```
+
+**JavaScript for orientation detection:**
+```typescript
+const handleOrientationChange = () => {
+  const isLandscape = window.matchMedia('(orientation: landscape)').matches;
+  // Adjust layout based on orientation
+};
+
+window.addEventListener('orientationchange', handleOrientationChange);
+```
+
+### Font Sizing for Tablet
+
+**iPad-specific font sizes in `tailwind.config.ts`:**
+```typescript
+fontSize: {
+  // Mobile-first base
+  'heroNameMobile': ['2.5rem', { lineHeight: '1.1' }],
+  'sectionHeadingMobile': ['1.5rem', { lineHeight: '1.2' }],
+  
+  // md: breakpoint (iPad)
+  'hereName': ['3.5rem', { lineHeight: '1.1' }],
+  'sectionHeading': ['2rem', { lineHeight: '1.2' }],
+  
+  // lg: breakpoint (iPad Pro)
+  'heroNameLg': ['4rem', { lineHeight: '1.1' }],
+  'sectionHeadingLg': ['2.5rem', { lineHeight: '1.2' }],
+}
+```
+
+### iPad-Specific Touch Events
+
+**Touch handling in interactive components:**
+```typescript
+// Prevent 300ms touch delay on buttons
+const handleTouchStart = (e: React.TouchEvent) => {
+  e.preventDefault();
+};
+
+const handleTouchEnd = (e: React.TouchEvent) => {
+  // Trigger action immediately without 300ms delay
+  handleAction();
+};
+
+// Usage
+<button 
+  onTouchStart={handleTouchStart}
+  onTouchEnd={handleTouchEnd}
+  className="cursor-pointer"
+>
+  Touch Action
+</button>
+```
+
+### Safe Area Considerations
+
+**Handle notches and safe areas (iPad Pro with Face ID):**
+```css
+/* In globals.css or component styles */
+.safe-area-padding {
+  padding-top: max(12px, env(safe-area-inset-top));
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+  padding-left: max(12px, env(safe-area-inset-left));
+  padding-right: max(12px, env(safe-area-inset-right));
+}
+```
+
+**Usage in fixed headers/footers:**
+```tsx
+<header className="fixed top-0 w-full safe-area-padding bg-primary">
+  {/* Header content */}
+</header>
+```
+
+### iPad Input Optimization
+
+**Form inputs for iPad:**
+```html
+<!-- Proper input types prevent auto-capitalization issues -->
+<input 
+  type="email" 
+  inputMode="email"
+  className="py-3 px-4"
+  placeholder="Email address"
+/>
+
+<!-- Disable auto-zoom on input focus -->
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+```
+
+### Performance for iPad
+
+**iPad-specific performance considerations:**
+- Reduce animation complexity on older iPad models
+- Use hardware acceleration for smooth scrolling
+  ```css
+  .animated-element {
+    transform: translateZ(0); /* GPU acceleration */
+    will-change: transform;
+  }
+  ```
+- Optimize image sizes for iPad's retina displays
+- Monitor memory usage for large lists (use virtualization)
+
+### iPad Testing Checklist
+
+- ✅ Test on iPad (9.7"), iPad Air, iPad Mini, iPad Pro
+- ✅ Test in both portrait and landscape orientations
+- ✅ Verify tap targets are ≥44×44px
+- ✅ Test touch scrolling performance
+- ✅ Check form input behavior and keyboard
+- ✅ Verify layout at different viewport widths
+- ✅ Check viewport-fit safe areas
+- ✅ Test with iPad navigation gestures
+- ✅ Performance check with DevTools throttling
+
+### iPad Testing Tools
+
+```bash
+# Chrome DevTools
+# 1. Press F12 or Cmd+Option+I
+# 2. Click device toolbar icon (Ctrl+Shift+M)
+# 3. Select iPad from device list
+# 4. Test orientation switching
+
+# Safari on macOS with iPad simulation
+# Develop menu > Enter responsive design mode
+```
+
+---
+
 ## SEO Optimization
 
 ### Metadata Management

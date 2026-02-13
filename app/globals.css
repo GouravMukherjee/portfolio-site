@@ -203,4 +203,58 @@
     @apply static w-auto h-auto p-0 m-0 overflow-visible whitespace-normal;
     clip: auto;
   }
+
+  /* iPad & Safe Area Utilities */
+  .safe-area-inset {
+    padding-top: max(12px, env(safe-area-inset-top));
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+    padding-left: max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+  }
+
+  .safe-area-top {
+    padding-top: max(12px, env(safe-area-inset-top));
+  }
+
+  .safe-area-bottom {
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+
+  /* Touch-friendly tap targets (minimum 44x44px) */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* GPU acceleration for smooth animations on iPad */
+  .gpu-accelerate {
+    transform: translateZ(0);
+    will-change: transform;
+    -webkit-transform: translateZ(0);
+    -webkit-perspective: 1000;
+  }
+
+  /* Prevent 300ms tap delay on touch devices */
+  .active:active {
+    @apply duration-75;
+  }
+
+  /* iPad landscape mode adjustments */
+  @media (max-height: 500px) {
+    .hero-adaptive {
+      min-height: auto;
+      padding: 2rem 1rem;
+    }
+
+    .section-adaptive {
+      padding: 2rem 1rem;
+    }
+  }
+
+  /* Disable text selection on interactive elements (iPad) */
+  .no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
 }

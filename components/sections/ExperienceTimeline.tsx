@@ -116,9 +116,9 @@ export function ExperienceTimeline() {
 
                 {/* Achievements - Compact bullets */}
                 <ul className="space-y-1.5">
-                  {exp.achievements.map((achievement, idx) => (
+                  {exp.achievements.map((achievement) => (
                     <li
-                      key={idx}
+                      key={`${exp.title}-${achievement}`}
                       className="flex items-start gap-2 text-xs leading-relaxed text-text-secondary"
                     >
                       <svg className="mt-0.5 h-3 w-3 flex-shrink-0 text-accent-white" fill="currentColor" viewBox="0 0 20 20">

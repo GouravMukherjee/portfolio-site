@@ -9,6 +9,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        'sm': '640px',    // Mobile
+        'md': '768px',    // iPad Mini/iPad (9.7")
+        'lg': '1024px',   // iPad Pro (10.5" - 11")
+        'xl': '1280px',   // iPad Pro (12.9")
+        'tablet': { 'raw': '(min-width: 768px) and (max-width: 1024px)' },
+        'landscape': { 'raw': '(max-height: 500px)' },
+      },
       colors: {
         // Dark Cosmic Theme - Premium Purple/Blue Accent
         primary: {

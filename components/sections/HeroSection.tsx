@@ -63,7 +63,7 @@ export function HeroSection() {
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.4, ease: 'easeOut', delay: shouldReduceMotion ? 0 : 0.6 }}
-          className="mt-8 flex items-center justify-center gap-3"
+          className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:flex-row sm:items-center"
         >
           <a href="#work" className="btn-primary">View My Work</a>
           <a href="#contact" className="btn-secondary">Get in Touch</a>

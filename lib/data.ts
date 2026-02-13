@@ -503,7 +503,7 @@ export function getSkillsByCategory(category: string): Skill[] {
  */
 export function groupSkillsByCategory(): Record<string, Skill[]> {
   return skillsData.reduce((acc, skill) => {
-    const category = skill.category;
+    const { category } = skill;
     if (!acc[category]) {
       acc[category] = [];
     }
